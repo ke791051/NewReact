@@ -1,0 +1,27 @@
+{
+  "presets": [
+    "env",
+    "stage-0",
+    "react",
+    "flow",
+    "es2015"
+  ],
+  "plugins": [
+    "add-module-exports",
+    "transform-async-to-generator"
+  ],
+  "env": {
+     "test": {
+      "plugins": ["istanbul"]
+    },
+    "development": {
+      "presets": ["react-hmre"]
+    },
+    "production": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-react-remove-prop-types"
+      ]
+    }
+  }
+}
