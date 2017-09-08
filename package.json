@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=development babel-node scripts/start.js",
-    "build": "cross-env NODE_ENV=production babel-node scripts/build.js"
+    "build": "cross-env NODE_ENV=production babel-node scripts/build.js",
+    "dll": "webpack --config ./webpack/vendor.config.js"
   },
   "dependencies": {
     "classnames": "2.2.5",

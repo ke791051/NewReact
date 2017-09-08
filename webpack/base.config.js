@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 const WebpackConfig = require('webpack-config')
 const config = require('../config')
 
@@ -53,7 +54,16 @@ module.exports = new WebpackConfig.Config().merge({
       filename: 'index.html',
       template: './src/index.html'
     }),
-    new ExtractTextPlugin({ filename: '[name].css?[hash:7]', allChunks: true })
+    new ExtractTextPlugin({ filename: '[name].css?[hash:7]', allChunks: true }),
+    new webpack.DllReferencePlugin({
+      context: path.join(__dirname, '..', 'dll'),
+      manifest: require('../dll/vendor.manifest.json')
+    }),
+    new AddAssetHtmlPlugin({
+      filepath: require.resolve('../dll/vendor.js'),
+      includeSourcemap: false,
+      hash: true
+    }),
   ],
   resolve: {
     extensions: ['.js', '.json'],
